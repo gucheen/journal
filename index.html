@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Diary</title>
+
+  <!-- 1. Load libraries -->
+  <link rel="stylesheet" href="node_modules/normalize.css/normalize.css">
+  <link rel="stylesheet" href="milligram/dist/milligram.min.css">
+  <link rel="stylesheet" href="app/app.css">
+
+  <!-- IE required polyfills, in this exact order -->
+  <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+  <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
+
+  <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+  <script src="node_modules/systemjs/dist/system.src.js"></script>
+  <script src="node_modules/rxjs/bundles/Rx.js"></script>
+  <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+
+  <!-- 2. Configure SystemJS -->
+  <script>
+    System.config({
+      packages: {
+        app: {
+          format: 'register',
+          defaultExtension: 'js'
+        }
+      }
+    });
+    System.import('app/boot')
+        .then(null, console.error.bind(console));
+  </script>
+
+</head>
+
+<!-- 3. Display the application -->
+<body>
+<diary>Loading...</diary>
+<script src="node_modules/avoscloud-sdk/dist/av-core.js"></script>
+<script src="node_modules/avoscloud-sdk/dist/av.js"></script>
+</body>
+
+</html>

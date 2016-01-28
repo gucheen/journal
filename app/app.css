@@ -1,0 +1,21 @@
+body {
+  background-color: #313439;
+  color: #F7F7F7;
+}
+
+label {
+  color: #9E8085;
+}
+
+#content {
+  padding: 5px 20px;
+  border: 2px solid transparent;
+  border-bottom-color: #D84E5B;
+  outline: none;
+  transition: all .3s ease;
+}
+
+#content:focus {
+  border: 2px solid #D84E5B;
+  padding: 5px 20px 20px;
+}

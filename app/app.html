@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>{{title}}</h1>
+  <form (ngSubmit)="submit()">
+    <fieldset>
+      <label for="content">Content</label>
+      <div id="content" contenteditable="true" [(contenteditableModel)]="content"></div>
+    </fieldset>
+    <button type="submit" class="button">Save</button>
+  </form>
+</div>

@@ -1,10 +1,17 @@
+<header class="header clearfix">
+  <div class="header-wrapper float-left">
+    <h1>{{title}}</h1>
+  </div>
+  <div class="float-right">
+    <button type="button" class="button button-submit">Save</button>
+  </div>
+</header>
 <div class="container">
-  <h1>{{title}}</h1>
   <form (ngSubmit)="submit()">
     <fieldset>
-      <label for="content">Content</label>
-      <div id="content" contenteditable="true" [(contenteditableModel)]="content"></div>
+      <div id="content" contenteditable="true"
+       aria-placeholder="How did your day go?"
+       [(contenteditableModel)]="content"></div>
     </fieldset>
-    <button type="submit" class="button">Save</button>
   </form>
 </div>

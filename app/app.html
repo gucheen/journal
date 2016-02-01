@@ -3,11 +3,13 @@
     <h1>{{title}}</h1>
   </div>
   <div class="float-right">
-    <button type="button" class="button button-submit">Save</button>
+    <button type="button" class="button button-submit"
+            (click)="submit()">Save</button>
   </div>
 </header>
 <div class="container">
-  <form (ngSubmit)="submit()">
+  <tagInput type="text"></tagInput>
+  <form>
     <fieldset>
       <div id="content" contenteditable="true"
        aria-placeholder="How did your day go?"

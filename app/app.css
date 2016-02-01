@@ -55,6 +55,7 @@ button {
 }
 
 #content {
+  margin-top: 20px;
   padding: 5px 20px;
   border: 2px solid transparent;
   border-bottom-color: #D84E5B;
@@ -71,5 +72,58 @@ button {
 #content:empty:before {
   content: attr(aria-placeholder);
   display: block;
-  color: #aaa;
+  color: #AAA;
+}
+
+.taginputContainer {
+  font-size: 0.78em;
+  display: inline-block;
+  height: 30px;
+  width: 100%;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.taginputContainer input,
+.taginputContainer input:focus {
+  margin-top: 2px;
+  padding: 0;
+  border: 1px solid #FFF;
+  outline: none;
+  line-height: 28px;
+}
+
+.taginputContainer ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  display: inline;
+}
+
+.taginputContainer ul li {
+  display: inline-block;
+  margin-top: 0px;
+  margin-bottom: 2px;
+  margin-right: 2px;
+  padding: 0 8px;
+  line-height: 28px;
+  border-radius: 2px;
+  border: 1px solid #DDD;
+  background-color: #EEE;
+}
+
+.taginputContainer ul li:hover {
+  background-color: #FFF;
+}
+
+.taginputContainer ul li a:link,
+.taginputContainer ul li a:visited,
+.taginputContainer ul li a:active {
+  color: #545454;
+  opacity: 0.5;
+  margin-left: 3px;
+  text-decoration: none;
 }

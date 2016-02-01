@@ -3,6 +3,7 @@
  */
 import {Component} from 'angular2/core'
 import {ContenteditableModel} from "./shared/directives/contenteditable-model";
+import {TagInput} from './shared/components/tag-input';
 import LeancloudConfig from './leancloud-config'
 
 declare var AV:any;
@@ -14,7 +15,7 @@ const Diary = AV.Object.extend('Diary');
 @Component({
   selector: 'diary',
   templateUrl: 'app/app.html',
-  directives: [ContenteditableModel]
+  directives: [ContenteditableModel, TagInput]
 })
 
 export class AppComponent {

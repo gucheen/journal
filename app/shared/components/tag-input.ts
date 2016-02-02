@@ -1,7 +1,7 @@
 /**
  * Created by gucheng on 2/1/16.
  */
-import {Component, ElementRef} from 'angular2/core';
+import {Component, ElementRef, Input} from 'angular2/core';
 
 @Component({
   selector: 'tagInput',
@@ -21,11 +21,12 @@ import {Component, ElementRef} from 'angular2/core';
   host: {
     '(keyup.enter)': 'onEnterKeyUp($event)',
     '(keydown.backspace)': 'onBackspaceKeyDown($event)'
-  }
+  },
+  inputs: ['tags']
 })
 
 export class TagInput {
-  private tags = [];
+  @Input('tags') tags: string[];
 
   private view = {
     input: null

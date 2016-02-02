@@ -75,6 +75,25 @@ button {
   color: #AAA;
 }
 
+.toast-container {
+  position: absolute;
+  right: 16px;
+  top: 70px;
+}
+
+.toast-container .toast {
+  background-color: #ddd;
+  width: 300px;
+  padding: 10px 20px;
+  border-radius: 2px;
+}
+
+.toast-container .toast.success {
+  background-color: #97cd76;
+  color: #FFF;
+  font-size: 14px;
+}
+
 .taginputContainer {
   font-size: 0.78em;
   display: inline-block;

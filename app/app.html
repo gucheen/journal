@@ -16,4 +16,14 @@
        [(contenteditableModel)]="content"></div>
     </fieldset>
   </form>
+  
+  <ul class="timeline">
+    <li *ngFor="#log of timeline">
+      <p class="timeline-date">{{log.viewTime}}</p>
+      <div class="timeline-content">
+        <h3>{{log.viewTags}}</h3>
+        <p>{{log.content}}</p>
+      </div>
+    </li>
+  </ul>
 </div>

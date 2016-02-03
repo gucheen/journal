@@ -75,6 +75,7 @@ button {
   color: #AAA;
 }
 
+/* Toast */
 .toast-container {
   position: absolute;
   right: 16px;
@@ -94,6 +95,7 @@ button {
   font-size: 14px;
 }
 
+/* Tags Input */
 .taginputContainer {
   font-size: 0.78em;
   display: inline-block;
@@ -145,4 +147,46 @@ button {
   opacity: 0.5;
   margin-left: 3px;
   text-decoration: none;
+}
+
+/* Time Line */
+.timeline {
+  margin-top: 40px;
+  list-style: none;
+}
+.timeline > li {
+  margin-bottom: 60px;
+}
+
+/* for Desktop */
+@media ( min-width : 640px ){
+  .timeline > li {
+    overflow: hidden;
+    margin: 0;
+    position: relative;
+  }
+  .timeline-date {
+    width: 130px;
+    float: left;
+    margin-top: 20px;
+  }
+  .timeline-content {
+    width: 75%;
+    float: left;
+    border-left: 3px #e5e5d1 solid;
+    padding-left: 30px;
+  }
+  .timeline-content:before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #6fc173;
+    position: absolute;
+    left: 126px;
+    top: 28px;
+    border-radius: 100%;
+  }
+  .timeline-content > h3 {
+    margin-top: 20px;
+  }
 }

@@ -5,3 +5,5 @@ node_modules
 app/**/*.js
 app/**/*.map
 app/leancloud-config.ts
+
+typings

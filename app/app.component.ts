@@ -29,7 +29,7 @@ export class AppComponent {
 
   public content = '';
 
-  public timeline: [{}];
+  public timeline: Object[];
 
   diary = new Diary();
 
@@ -40,15 +40,10 @@ export class AppComponent {
     this.query.limit(10);
     this.query.find()
       .then((diaries) => {
-        this.timeline = diaries.map(function(element) {
-          var newElement = element.toJSON();
-          newElement.viewTags = newElement.tags.join('，');
-          newElement.viewTime = moment(newElement.createAt).format('LL');
-          return newElement;
-        });
+        this.timeline = diaries.map(this.formatDiaryFromAV);
       });
   }
-
+ToastServiceInterface
   submit() {
     if (!this.content) {
       console.log('content-empty');
@@ -63,9 +58,17 @@ export class AppComponent {
       .then((response) => {
         console.log(response);
         this.ToastService.show('保存成功');
+        this.timeline = [this.formatDiaryFromAV(response)].concat(this.timeline);
       })
       .catch(function(err) {
         console.log(err);
       });
-  };
+  }
+
+  formatDiaryFromAV(diary) {
+    var newElement = diary.toJSON();
+    newElement.viewTags = newElement.tags.join('，');
+    newElement.viewTime = moment(newElement.createdAt).format('LL');
+    return newElement;
+  }
 }

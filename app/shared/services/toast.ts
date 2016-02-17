@@ -9,10 +9,10 @@ interface ToastServiceInterface {
 @Injectable()
 export class ToastService implements ToastServiceInterface {
   private Container: Element;
-  
+
   public toastList = [];
-  
-  public timerList =[];
+
+  public timerList = [];
 
   constructor() {
     this.Container = document.createElement('div');

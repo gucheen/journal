@@ -43,7 +43,7 @@ export class AppComponent {
         this.timeline = diaries.map(this.formatDiaryFromAV);
       });
   }
-ToastServiceInterface
+  
   submit() {
     if (!this.content) {
       console.log('content-empty');

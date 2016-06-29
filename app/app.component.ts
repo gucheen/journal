@@ -1,16 +1,18 @@
 /**
  * Created by gucheng on 1/21/16.
  */
-import {Component} from 'angular2/core'
-import {ContenteditableModel} from "./shared/directives/contenteditable-model";
-import {TagInput} from './shared/components/tag-input'
-import LeancloudConfig from './leancloud-config'
-import {ToastService} from './shared/services/toast'
-import moment = require("moment");
+
+import {Component, OnInit, NgZone} from '@angular/core';
+import {ContenteditableModel} from './shared/directives/contenteditable-model';
+import {TagInput} from './shared/components/tag-input';
+import LeancloudConfig from './leancloud-config';
+import {ToastService} from './shared/services/toast';
+import moment = require('moment');
 
 declare var AV: any;
+declare var zone: any;
 
-AV.initialize(LeancloudConfig.AppId, LeancloudConfig.AppKey);
+AV.init(LeancloudConfig);
 
 const Diary = AV.Object.extend('Diary');
 
@@ -23,26 +25,20 @@ moment.locale('zh-cn');
   providers: [ToastService]
 })
 
-export class AppComponent {
-  public title = 'Journal';
+export class AppComponent implements OnInit {
+  title = 'Journal';
 
-  public tags = [];
+  tags = [];
 
-  public content = '';
+  content = '';
 
-  public timeline: Object[];
+  timeline = [];
 
   diary = new Diary();
 
   query = new AV.Query('Diary');
 
-  constructor(private ToastService: ToastService) {
-    this.query.addDescending('createdAt');
-    this.query.limit(10);
-    this.query.find()
-      .then((diaries) => {
-        this.timeline = diaries.map(this.formatDiaryFromAV);
-      });
+  constructor(private ToastService: ToastService, private zone: NgZone) {
   }
   
   submit() {
@@ -71,5 +67,16 @@ export class AppComponent {
     newElement.viewTags = newElement.tags.join(', ');
     newElement.viewTime = moment(newElement.createdAt).format('LL');
     return newElement;
+  }
+
+  ngOnInit() {
+    this.query.addDescending('createdAt');
+    this.query.limit(10);
+    this.query.find()
+      .then(diaries => {
+        this.zone.run(() => {
+          Array.prototype.push.apply(this.timeline, diaries.map(this.formatDiaryFromAV));
+        });
+      });
   }
 }

@@ -1,10 +1,10 @@
 /**
  * Created by gucheng on 1/28/16.
  */
-import {Directive, ElementRef, Input, Output} from "angular2/core";
-import {EventEmitter} from "angular2/src/facade/async";
-import {OnChanges} from "angular2/core";
-import {isPropertyUpdated} from "angular2/src/common/forms/directives/shared";
+import {Directive, ElementRef, Input, Output} from "@angular/core";
+import {EventEmitter} from "@angular/core";
+import {OnChanges} from "@angular/core";
+// import {isPropertyUpdated} from "@angular/src/common/forms/directives/shared";
 
 @Directive({
   selector: '[contenteditableModel]',
@@ -23,10 +23,8 @@ export class ContenteditableModel implements OnChanges {
   }
 
   ngOnChanges(changes) {
-    if (isPropertyUpdated(changes, this.lastViewModel)) {
-      this.lastViewModel = this.model
-      this.refreshView()
-    }
+    this.lastViewModel = this.model
+    this.refreshView()
   }
 
   onBlur() {

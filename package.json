@@ -2,32 +2,37 @@
   "name": "journal",
   "version": "1.0.0",
   "scripts": {
-    "start": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
+    "start": "webpack-dev-server"
   },
   "license": "MIT",
   "dependencies": {
-    "angular2": "2.0.0-beta.7",
-    "avoscloud-sdk": "^0.6.9",
-    "es6-promise": "^3.1.2",
-    "es6-shim": "^0.34.4",
+    "@angular/common": "2.0.0-rc.3",
+    "@angular/compiler": "2.0.0-rc.3",
+    "@angular/core": "2.0.0-rc.3",
+    "@angular/forms": "0.1.1",
+    "@angular/http": "2.0.0-rc.3",
+    "@angular/platform-browser": "2.0.0-rc.3",
+    "@angular/platform-browser-dynamic": "2.0.0-rc.3",
+    "@angular/router": "3.0.0-alpha.8",
+    "@angular/router-deprecated": "2.0.0-rc.2",
+    "@angular/upgrade": "2.0.0-rc.3",
+    "systemjs": "0.19.27",
+    "core-js": "^2.4.0",
+    "reflect-metadata": "^0.1.3",
+    "rxjs": "5.0.0-beta.6",
+    "zone.js": "^0.6.12",
+    "angular2-in-memory-web-api": "0.0.12",
     "jquery": "^2.2.1",
-    "moment": "^2.11.2",
-    "normalize.css": "^3.0.3",
-    "reflect-metadata": "0.1.3",
-    "rxjs": "5.0.0-beta.2",
-    "systemjs": "0.19.22",
-    "typescript": "^1.8.2",
-    "typo.css": "^2.1.2",
-    "zone.js": "0.5.15"
+    "leancloud-storage": "^1.2.0",
+    "moment": "^2.13.0",
+    "normalize.css": "^4.1.1",
+    "typo.css": "^2.1.2"
   },
   "devDependencies": {
-    "awesome-typescript-loader": "^0.15.10",
     "concurrently": "^2.0.0",
-    "html-webpack-plugin": "^2.9.0",
-    "lite-server": "^2.1.0",
-    "ts-loader": "^0.8.1",
-    "typings": "^0.6.8",
-    "webpack": "^1.12.14",
-    "webpack-dev-server": "^1.14.1"
+    "lite-server": "^2.2.0",
+    "ts-loader": "^0.8.2",
+    "typescript": "^1.8.10",
+    "typings": "^1.0.4"
   }
 }

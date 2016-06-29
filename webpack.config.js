@@ -1,14 +1,18 @@
 var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin')
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var helpers = require('./helpers');
 
 module.exports = {
   entry: {
-    'vendor': './app/vendor',
-    'app': './app/main'
+    vendor: './app/vendor.ts',
+    app: './app/main.ts',
+    polyfills: './app/polyfills.ts'
   },
   output: {
-    path: __dirname,
-    filename: './public/[name].bundle.js'
+    path: helpers.root('public'),
+    filename: '[name].js',
+    publicPath: 'http://localhost:8080/',
+    chunkFilename: '[id].chunk.js'
   },
   resolve: {
     extensions: ['', '.js', '.ts']
@@ -18,17 +22,22 @@ module.exports = {
     loaders: [
       {
         test: /\.tsx?$/,
-        loader: 'ts-loader'
+        loader: 'ts'
       }
     ]
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('vendor', './public/vendor.bundle.js'),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ['app', 'vendor', 'polyfills']
+    }),
+
     new HtmlWebpackPlugin({
       template: 'index.html'
     })
   ],
   devServer: {
-    inline: true
+    inline: true,
+    historyApiFallback: true,
+    stats: 'minimal'
   }
 }

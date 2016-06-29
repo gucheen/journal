@@ -1,7 +1,7 @@
 /**
  * Created by gucheng on 2/1/16.
  */
-import {Component, ElementRef, Input} from 'angular2/core';
+import {Component, ElementRef, Input} from '@angular/core';
 
 @Component({
   selector: 'tagInput',
@@ -9,7 +9,7 @@ import {Component, ElementRef, Input} from 'angular2/core';
     <div class="taginputContainer">
       <ul>
         <li
-         *ngFor="#tag of tags"
+         *ngFor="let tag of tags"
          [attr.data]="tag">
           {{tag}}
           <a (click)="removeTag(tag)" href="#">x</a>

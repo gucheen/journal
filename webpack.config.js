@@ -2,6 +2,8 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var helpers = require('./helpers');
 
+const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
+
 module.exports = {
   entry: {
     vendor: './app/vendor.ts',
@@ -33,6 +35,12 @@ module.exports = {
 
     new HtmlWebpackPlugin({
       template: 'index.html'
+    }),
+
+    new webpack.DefinePlugin({
+      'process.env': {
+        'ENV': JSON.stringify(ENV)
+      }
     })
   ],
   devServer: {
@@ -40,4 +48,4 @@ module.exports = {
     historyApiFallback: true,
     stats: 'minimal'
   }
-}
+};

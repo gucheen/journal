@@ -1,4 +1,4 @@
 export default {
-  "AppId": "",
-  "AppKey": ""
+  appId: '',
+  appKey: ''
 }

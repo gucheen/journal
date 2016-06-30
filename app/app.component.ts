@@ -1,16 +1,15 @@
 /**
  * Created by gucheng on 1/21/16.
  */
+/// <reference path="../typings/index.d.ts" />
 
-import {Component, OnInit, NgZone} from '@angular/core';
-import {ContenteditableModel} from './shared/directives/contenteditable-model';
-import {TagInput} from './shared/components/tag-input';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { ContenteditableModel } from './shared';
+import { TagInput } from './shared';
 import LeancloudConfig from './leancloud-config';
-import {ToastService} from './shared/services/toast';
+import { ToastService } from './shared';
 import moment = require('moment');
-
-declare var AV: any;
-declare var zone: any;
+const AV = require('leancloud-storage');
 
 AV.init(LeancloudConfig);
 
@@ -24,7 +23,6 @@ moment.locale('zh-cn');
   directives: [ContenteditableModel, TagInput],
   providers: [ToastService]
 })
-
 export class AppComponent implements OnInit {
   title = 'Journal';
 
@@ -40,7 +38,7 @@ export class AppComponent implements OnInit {
 
   constructor(private ToastService: ToastService, private zone: NgZone) {
   }
-  
+
   submit() {
     if (!this.content) {
       console.log('content-empty');
@@ -55,9 +53,11 @@ export class AppComponent implements OnInit {
       .then((response) => {
         console.log(response);
         this.ToastService.show('保存成功');
-        this.timeline = [this.formatDiaryFromAV(response)].concat(this.timeline);
+        this.zone.run(() => {
+          this.timeline = [this.formatDiaryFromAV(response)].concat(this.timeline);
+        });
       })
-      .catch(function(err) {
+      .catch(function (err) {
         console.log(err);
       });
   }

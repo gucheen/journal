@@ -1,7 +1,7 @@
 /**
  * Created by gucheng on 2/1/16.
  */
-import {Component, ElementRef, Input} from '@angular/core';
+import { Component, ElementRef, Input, HostListener } from '@angular/core';
 
 @Component({
   selector: 'tagInput',
@@ -17,12 +17,7 @@ import {Component, ElementRef, Input} from '@angular/core';
       </ul>
       <input type="text" placeholder="Tags" [(ngModel)]="currentInput">
     </div>
-  `,
-  host: {
-    '(keyup.enter)': 'onEnterKeyUp($event)',
-    '(keydown.backspace)': 'onBackspaceKeyDown($event)'
-  },
-  inputs: ['tags']
+  `
 })
 
 export class TagInput {
@@ -37,17 +32,17 @@ export class TagInput {
   constructor(el: ElementRef) {
   }
 
-  onEnterKeyUp($event) {
-    $event.preventDefault();
+  @HostListener('keyup.enter') onEnterKeyUp() {
     if (this.currentInput) {
-      this.addTag(this.currentInput);      
+      this.addTag(this.currentInput);
+      return false;
     }
   }
 
-  onBackspaceKeyDown($event) {
+  @HostListener('keydown.backspace') onBackspaceKeyDown() {
     if (this.currentInput.length === 0 && this.tags.length) {
       this.tags.pop();
-      $event.preventDefault();
+      return false;
     }
   }
 
@@ -66,7 +61,7 @@ export class TagInput {
     if (i === -1) {
       return;
     }
-    
+
     this.tags.splice(i, 1)
   }
 }

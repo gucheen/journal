@@ -6,22 +6,14 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ContenteditableModel } from './shared';
 import { TagInput } from './shared';
-import LeancloudConfig from './leancloud-config';
 import { ToastService } from './shared';
-import moment = require('moment');
-const AV = require('leancloud-storage');
-
-AV.init(LeancloudConfig);
-
-const Diary = AV.Object.extend('Diary');
-
-moment.locale('zh-cn');
+import { DiaryService } from './services';
 
 @Component({
   selector: 'diary',
   templateUrl: 'app/app.html',
   directives: [ContenteditableModel, TagInput],
-  providers: [ToastService]
+  providers: [ToastService, DiaryService]
 })
 export class AppComponent implements OnInit {
   title = 'Journal';
@@ -32,11 +24,9 @@ export class AppComponent implements OnInit {
 
   timeline = [];
 
-  diary = new Diary();
-
-  query = new AV.Query('Diary');
-
-  constructor(private ToastService: ToastService, private zone: NgZone) {
+  constructor(private ToastService: ToastService,
+              private zone: NgZone,
+              private diaryService: DiaryService) {
   }
 
   submit() {
@@ -45,38 +35,29 @@ export class AppComponent implements OnInit {
       return;
     }
 
-    this.diary.save({
-      pub_timestamp: new Date(),
+    this.diaryService.createDiary({
       content: this.content,
-      tags: this.tags
+      tags: this.tags,
+      pub_timestamp: new Date()
     })
-      .then((response) => {
-        console.log(response);
+      .then(diary => {
         this.ToastService.show('保存成功');
         this.zone.run(() => {
-          this.timeline = [this.formatDiaryFromAV(response)].concat(this.timeline);
+          this.timeline.unshift(diary);
+          this.content = '';
+          this.tags.length = 0;
         });
       })
-      .catch(function (err) {
-        console.log(err);
+      .catch(err => {
+        this.ToastService.show('保存失败');
       });
-  }
-
-  formatDiaryFromAV(diary) {
-    var newElement = diary.toJSON();
-    newElement.viewTags = newElement.tags.join(', ');
-    newElement.viewTime = moment(newElement.createdAt).format('LL');
-    return newElement;
   }
 
   ngOnInit() {
-    this.query.addDescending('createdAt');
-    this.query.limit(10);
-    this.query.find()
-      .then(diaries => {
-        this.zone.run(() => {
-          Array.prototype.push.apply(this.timeline, diaries.map(this.formatDiaryFromAV));
-        });
+    this.diaryService.getDiaries().then(diaries => {
+      this.zone.run(() => {
+        Array.prototype.push.apply(this.timeline, diaries);
       });
+    });
   }
 }

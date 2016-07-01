@@ -87,12 +87,24 @@ button {
   width: 300px;
   padding: 10px 20px;
   border-radius: 2px;
+  font-size: 14px;
+  color: #FFF;
 }
 
 .toast-container .toast.success {
   background-color: #97cd76;
-  color: #FFF;
-  font-size: 14px;
+}
+
+.toast-container .toast.info {
+  background-color: #1fc8db;
+}
+
+.toast-container .toast.warning {
+  background-color: #f68b39;
+}
+
+.toast-container .toast.error {
+  background-color: #ed6c63;
 }
 
 /* Tags Input */

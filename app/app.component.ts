@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
         });
       })
       .catch(err => {
-        this.ToastService.show('保存失败');
+        this.ToastService.show('保存失败', 'error');
       });
   }
 

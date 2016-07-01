@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 interface ToastServiceInterface {
   toastList: Element[];
@@ -10,9 +10,9 @@ interface ToastServiceInterface {
 export class ToastService implements ToastServiceInterface {
   private Container: Element;
 
-  public toastList = [];
+  toastList = [];
 
-  public timerList = [];
+  timerList = [];
 
   constructor() {
     this.Container = document.createElement('div');
@@ -20,10 +20,10 @@ export class ToastService implements ToastServiceInterface {
     document.body.appendChild(this.Container);
   }
 
-  public show(message: string, type?: string) {
-    var toast = document.createElement('div');
+  show(message: string, type?: string) {
+    let toast = document.createElement('div');
     toast.textContent = message;
-    toast.className = 'toast ' + (type ? type : 'success');
+    toast.className = `toast ${type ? type : 'success'}`;
     this.Container.appendChild(toast);
     this.toastList.push(toast);
     this.destroy(toast);

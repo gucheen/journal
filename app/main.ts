@@ -11,6 +11,6 @@ bootstrap(AppComponent, [
   provideForms()
 ]);
 
-if (process.env === 'prod') {
+if (process.env === 'production') {
   enableProdMode();
 }

@@ -2,7 +2,7 @@
   "name": "journal",
   "version": "1.0.0",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "NODE_ENV=development webpack-dev-server"
   },
   "license": "MIT",
   "dependencies": {

@@ -4,7 +4,6 @@
 import { Directive, ElementRef, Input, Output, HostListener } from "@angular/core";
 import { EventEmitter } from "@angular/core";
 import { OnChanges } from "@angular/core";
-// import {isPropertyUpdated} from "@angular/forms";
 
 @Directive({
   selector: '[contenteditableModel]'
@@ -14,13 +13,18 @@ export class ContenteditableModel implements OnChanges {
   @Output('contenteditableModelChange') update = new EventEmitter();
 
   private lastViewModel: any;
-  
+
   constructor(private elRef: ElementRef) {
   }
 
   ngOnChanges(changes) {
-    this.lastViewModel = this.model
-    this.refreshView()
+    if (changes.model) {
+      let { currentValue, previousValue } = changes.model;
+      if (currentValue !== previousValue) {
+        this.lastViewModel = this.model;
+        this.refreshView();
+      }
+    }
   }
 
   @HostListener('blur') onBlur() {

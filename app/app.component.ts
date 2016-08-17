@@ -4,9 +4,7 @@
 /// <reference path="../typings/index.d.ts" />
 
 import { Component, OnInit, NgZone } from '@angular/core';
-import { ContenteditableModel } from './shared';
-import { TagInput } from './shared';
-import { ToastService } from './shared';
+import { ContenteditableModel, TagInput, ToastService } from './shared';
 import { DiaryService } from './services';
 
 @Component({
